@@ -1,0 +1,35 @@
+---
+
+  - name: Setup Pre-requisites
+    hosts: all
+    become: true
+    roles:
+      - pre-requisite
+      - configure-hosts-file
+
+  - name: Install elasticsearch
+    hosts: all
+    become: true
+    roles:
+      - install-elasticsearch
+
+  - name: Configure elasticsearch
+    hosts: all
+    become: true
+    roles:
+      - configure-elastic-file
+      - change-permission
+      - systemd-conf
+      - restart-elasticsearch
+
+  - name: Install Kibana
+    hosts: all
+    become: true
+    roles:
+      - kibana
+
+  - name: Install Logstash
+    hosts: all
+    become: true
+    roles:
+      - logstash

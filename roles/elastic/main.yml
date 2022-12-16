@@ -1,0 +1,16 @@
+- name: Install Elastic Stack for Ubuntu
+  apt:
+    name:
+      - elasticsearch
+      - kibana
+      - logstash
+    state: latest
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Elastic Stack for CentOS
+  dnf:
+    name:
+    state: latest
+    update_cache: yes
+  when: ansible_distribution == "CentOS"
